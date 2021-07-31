@@ -54,3 +54,22 @@ describe("getProducts",()=>{
         expect(result).toHaveProperty("id",7) //    CHECKING THE PROPERTIES
     })
 })
+
+//EXCEPTIONS
+
+describe("registeredUsers",()=>{
+    it("should throw if user is falsy",()=>{
+        let args=[null,"",undefined,NaN,0,false];
+        args.forEach(a=>{
+            expect(()=>{
+                lib.registerUser(a)
+            }).toThrow() // CHECKING IF ALL THE FLASE VALUES WILL THROW THE ERROR
+        })
+    })
+
+    it("should return object if user is not registered",()=>{
+        const result = lib.registerUser("nitish")
+        expect(result).toHaveProperty("username","nitish")
+        expect(result.id).toBeGreaterThan(0)
+    })
+})
